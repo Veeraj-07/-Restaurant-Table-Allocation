@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Booking Successful | TableEase</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+          rel="stylesheet">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6f8;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        .navbar {
+            padding: 14px 0;
+        }
+
+        .brand {
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        /* =========================
+           SLIDESHOW
+        ========================== */
+
+        .success-slider {
+            height: 430px;
+            overflow: hidden;
+        }
+
+        .success-slider .carousel-item,
+        .success-slider img {
+            height: 430px;
+        }
+
+        .success-slider img {
+            width: 100%;
+            object-fit: cover;
+            filter: brightness(45%);
+        }
+
+        .carousel-caption {
+            bottom: 110px;
+        }
+
+        .carousel-caption h1 {
+            font-size: 50px;
+            font-weight: 800;
+        }
+
+        .carousel-caption p {
+            font-size: 20px;
+        }
+
+        /* =========================
+           SUCCESS CONTAINER
+        ========================== */
+
+        .success-container {
+            margin-top: -80px;
+            position: relative;
+            z-index: 10;
+            padding-bottom: 50px;
+        }
+
+        /* =========================
+           SUCCESS CARD
+        ========================== */
+
+        .success-card {
+            background: white;
+            border-radius: 25px;
+            padding: 45px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            background: #198754;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 45px;
+            box-shadow: 0 8px 20px rgba(25,135,84,0.3);
+        }
+
+        .success-title {
+            font-size: 36px;
+            font-weight: 800;
+            color: #198754;
+        }
+
+        .success-message {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* =========================
+           BOOKING DETAILS
+        ========================== */
+
+        .booking-details {
+            background: #f8f9fa;
+            border-radius: 18px;
+            padding: 25px;
+            margin: 25px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 5px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+            font-weight: 600;
+        }
+
+        .detail-value {
+            font-weight: 700;
+            color: #212529;
+        }
+
+        .table-number {
+            display: inline-block;
+            background: #212529;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 18px;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================== */
+
+        .action-buttons {
+            margin-top: 30px;
+        }
+
+        .action-buttons .btn {
+            border-radius: 12px;
+            padding: 12px 25px;
+            font-weight: 600;
+            margin: 5px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #111;
+            color: #aaa;
+            padding: 30px 15px;
+        }
+
+        footer strong {
+            color: white;
+            font-size: 20px;
+        }
+
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media(max-width:768px) {
+
+            .success-slider {
+                height: 350px;
+            }
+
+            .success-slider .carousel-item,
+            .success-slider img {
+                height: 350px;
+            }
+
+            .carousel-caption {
+                bottom: 70px;
+            }
+
+            .carousel-caption h1 {
+                font-size: 32px;
+            }
+
+            .carousel-caption p {
+                font-size: 16px;
+            }
+
+            .success-container {
+                margin-top: -50px;
+            }
+
+            .success-card {
+                padding: 30px 20px;
+            }
+
+            .success-title {
+                font-size: 28px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand brand"
+           href="{{ url_for('home') }}">
+
+            🍽️ TableEase
+
+        </a>
+
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div class="collapse navbar-collapse"
+             id="mainMenu">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="{{ url_for('home') }}">
+
+                        <i class="bi bi-house"></i>
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                {% if session.get('customer_id') %}
+
+                <li class="nav-item">
+
+                    <a class="nav-link"
+                       href="{{ url_for('booking_history') }}">
+
+                        <i class="bi bi-calendar-check"></i>
+                        My Bookings
+
+                    </a>
+
+                </li>
+
+
+                <li class="nav-item">
+
+                    <a class="btn btn-outline-light ms-lg-2"
+                       href="{{ url_for('customer_logout') }}">
+
+                        Logout
+
+                    </a>
+
+                </li>
+
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     RESTAURANT SLIDESHOW
+========================== -->
+
+<div id="successCarousel"
+     class="carousel slide carousel-fade success-slider"
+     data-bs-ride="carousel"
+     data-bs-interval="3500">
+
+
+    <!-- INDICATORS -->
+
+    <div class="carousel-indicators">
+
+        <button type="button"
+                data-bs-target="#successCarousel"
+                data-bs-slide-to="0"
+                class="active">
+        </button>
+
+        <button type="button"
+                data-bs-target="#successCarousel"
+                data-bs-slide-to="1">
+        </button>
+
+        <button type="button"
+                data-bs-target="#successCarousel"
+                data-bs-slide-to="2">
+        </button>
+
+    </div>
+
+
+    <!-- SLIDES -->
+
+    <div class="carousel-inner">
+
+
+        <!-- SLIDE 1 -->
+
+        <div class="carousel-item active">
+
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80"
+                 alt="Restaurant">
+
+            <div class="carousel-caption">
+
+                <h1>Thank You! 🎉</h1>
+
+                <p>
+                    Your table has been successfully reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SLIDE 2 -->
+
+        <div class="carousel-item">
+
+            <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1600&q=80"
+                 alt="Restaurant Dining">
+
+            <div class="carousel-caption">
+
+                <h1>Enjoy Your Dining Experience 🍽️</h1>
+
+                <p>
+                    We look forward to welcoming you.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SLIDE 3 -->
+
+        <div class="carousel-item">
+
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1600&q=80"
+                 alt="Fine Dining">
+
+            <div class="carousel-caption">
+
+                <h1>Your Table Awaits ✨</h1>
+
+                <p>
+                    Sit back, relax and enjoy your meal.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- PREVIOUS -->
+
+    <button class="carousel-control-prev"
+            type="button"
+            data-bs-target="#successCarousel"
+            data-bs-slide="prev">
+
+        <span class="carousel-control-prev-icon"></span>
+
+    </button>
+
+
+    <!-- NEXT -->
+
+    <button class="carousel-control-next"
+            type="button"
+            data-bs-target="#successCarousel"
+            data-bs-slide="next">
+
+        <span class="carousel-control-next-icon"></span>
+
+    </button>
+
+</div>
+
+
+<!-- =========================
+     SUCCESS CONTENT
+========================== -->
+
+<div class="container success-container">
+
+    <div class="success-card">
+
+
+        <!-- SUCCESS ICON -->
+
+        <div class="success-icon">
+
+            <i class="bi bi-check-lg"></i>
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1 class="success-title">
+
+            Booking Confirmed!
+
+        </h1>
+
+
+        <p class="success-message">
+
+            Your restaurant table has been successfully reserved.
+
+            <br>
+
+            Thank you for choosing <strong>TableEase</strong>!
+
+        </p>
+
+
+        <!-- =========================
+             BOOKING DETAILS
+        ========================== -->
+
+        <div class="booking-details">
+
+
+            <!-- CUSTOMER -->
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+
+                    <i class="bi bi-person me-2"></i>
+
+                    Customer Name
+
+                </span>
+
+
+                <span class="detail-value">
+
+                    {{ customer_name }}
+
+                </span>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+
+                    <i class="bi bi-grid-3x3-gap me-2"></i>
+
+                    Assigned Table
+
+                </span>
+
+
+                <span class="detail-value">
+
+                    <span class="table-number">
+
+                        Table {{ table_number }}
+
+                    </span>
+
+                </span>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+
+                    <i class="bi bi-check-circle me-2"></i>
+
+                    Booking Status
+
+                </span>
+
+
+                <span class="badge bg-success fs-6 px-3 py-2">
+
+                    Confirmed
+
+                </span>
+
+            </div>
+
+
+            <!-- DURATION -->
+
+            <div class="detail-row">
+
+                <span class="detail-label">
+
+                    <i class="bi bi-clock me-2"></i>
+
+                    Reservation Duration
+
+                </span>
+
+
+                <span class="detail-value">
+
+                    2 Hours
+
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =========================
+             IMPORTANT MESSAGE
+        ========================== -->
+
+        <div class="alert alert-success mx-auto"
+             style="max-width:600px;">
+
+            <i class="bi bi-info-circle-fill me-2"></i>
+
+            Please arrive on time and present your booking
+            details at the restaurant.
+
+        </div>
+
+
+        <!-- =========================
+             ACTION BUTTONS
+        ========================== -->
+
+        <div class="action-buttons">
+
+
+            <a href="{{ url_for('booking_history') }}"
+               class="btn btn-dark">
+
+                <i class="bi bi-calendar-check me-2"></i>
+
+                View My Bookings
+
+            </a>
+
+
+            <a href="{{ url_for('booking') }}"
+               class="btn btn-success">
+
+                <i class="bi bi-plus-circle me-2"></i>
+
+                Book Another Table
+
+            </a>
+
+
+            <a href="{{ url_for('home') }}"
+               class="btn btn-outline-secondary">
+
+                <i class="bi bi-house me-2"></i>
+
+                Back to Home
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <div class="container text-center">
+
+        <strong>
+            🍽️ TableEase
+        </strong>
+
+        <br>
+
+        <small>
+            Restaurant Table Allocation System
+        </small>
+
+        <br>
+
+        <small>
+            © 2026 TableEase. All Rights Reserved.
+        </small>
+
+    </div>
+
+</footer>
+
+
+<!-- BOOTSTRAP JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+
+</html>
